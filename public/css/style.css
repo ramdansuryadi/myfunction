@@ -1,0 +1,27 @@
+.header {
+
+	width:980px;
+	height:200px;
+	position:relative;
+	background-color:red;
+}
+
+
+
+.footer{
+	width:980px;
+	height:200px;
+	position:relative;
+	background-color:red;
+
+	padding: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    margin-top: -75px;
+    position: absolute;
+    /* font-size: 12px; */
+    left: 0;
+    right: 0;
+    width: 100%;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
