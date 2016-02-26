@@ -15,10 +15,10 @@ use Illuminate\Http\Request;
 
  // Route::get('/tes', 'NewTask@create');
 
-Route::get('/', function () {
-    $tasks = Task::all();
-    return View::make('NewTask')->with('tasks',$tasks);
-});
+// Route::get('/', function () {
+//     $tasks = Task::all();
+//     return View::make('NewTask')->with('tasks',$tasks);
+// });
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -36,42 +36,55 @@ Route::get('/', function () {
 
 
 
-Route::get('/tasks/{task_id?}',function($task_id){
-    $task = Task::find($task_id);
+// Route::get('/tasks/{task_id?}',function($task_id){
+//     $task = Task::find($task_id);
 
-    return Response::json($task);
-});
+//     return Response::json($task);
+// });
 
-Route::post('/tasks',function(Request $request){
-    $task = Task::create($request->all());
+// Route::post('/tasks',function(Request $request){
+//     $task = Task::create($request->all());
 
-    return Response::json($task);
-});
+//     return Response::json($task);
+// });
 
-Route::put('/tasks/{task_id?}',function(Request $request,$task_id){
-    $task = Task::find($task_id);
+// Route::put('/tasks/{task_id?}',function(Request $request,$task_id){
+//     $task = Task::find($task_id);
 
-    $task->task = $request->task;
-    $task->description = $request->description;
+//     $task->task = $request->task;
+//     $task->description = $request->description;
 
-    $task->save();
+//     $task->save();
 
-    return Response::json($task);
-});
+//     return Response::json($task);
+// });
 
-Route::delete('/tasks/{task_id?}',function($task_id){
-    $task = Task::destroy($task_id);
+// Route::delete('/tasks/{task_id?}',function($task_id){
+//     $task = Task::destroy($task_id);
 
-    return Response::json($task);
-});
+//     return Response::json($task);
+// });
 
 
-// Basic routing
+// // Basic routing
 
-Route::get('/hello',function(){
-    return 'Hello World!';
-});
+// Route::get('/hello',function(){
+//     return 'Hello World!';
+// });
 
-Route::get('/shop/{name}','ShoppingCart@show');
+// Route::get('/shop/{name}','ShoppingCart@show');
 
+
+Route::get('/','ShoppingCart@show');
+
+
+Route::delete('/tasks/{task_id?}','ShoppingCart@destroy');
+
+
+Route::post('/tasks','ShoppingCart@create');
+
+
+Route::put('/tasks/{task_id?}','ShoppingCart@store');
+
+Route::get('/tasks/{task_id?}','ShoppingCart@edit');
 

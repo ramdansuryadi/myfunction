@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Task;
+use View;
+use Response;
 
 class ShoppingCart extends Controller
 {
@@ -24,9 +27,10 @@ class ShoppingCart extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+          $task = Task::create($request->all());
+          return Response::json($task);
     }
 
     /**
@@ -35,9 +39,13 @@ class ShoppingCart extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$task_id)
     {
-        //
+    $task = Task::find($task_id);
+    $task->task = $request->task;
+    $task->description = $request->description;
+    $task->save();
+    return Response::json($task);
     }
 
     /**
@@ -46,9 +54,10 @@ class ShoppingCart extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show()
     {
-         return view('hello',array('name' => $name));
+       $tasks = Task::all();
+    return View::make('NewTask')->with('tasks',$tasks);
     }
 
     /**
@@ -57,9 +66,11 @@ class ShoppingCart extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($task_id)
     {
-        //
+          $task = Task::find($task_id);
+
+    return Response::json($task);
     }
 
     /**
@@ -80,8 +91,9 @@ class ShoppingCart extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($task_id)
     {
-        //
+            $task = Task::destroy($task_id);
+            return Response::json($task);
     }
 }
