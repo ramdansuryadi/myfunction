@@ -88,3 +88,7 @@ Route::put('/tasks/{task_id?}','ShoppingCart@store');
 
 Route::get('/tasks/{task_id?}','ShoppingCart@edit');
 
+Route::get('/tampil','TampilController@show');
+
+
+Route::post('/upload','TampilController@upload');
